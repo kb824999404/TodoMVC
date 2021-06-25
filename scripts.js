@@ -28,7 +28,18 @@ function update() {
         }
         item.style.display = display;
     });
+    displayOperation();
 
+}
+function displayOperation(){
+    var items = $All('.List-Item.Selected');
+    var operation = $('.Operation');
+    if(items.length>0){
+        operation.style.display = '';
+    }
+    else{
+        operation.style.display = 'none';
+    }
 }
   
 function addTodo(msg) {
@@ -37,38 +48,97 @@ function addTodo(msg) {
     var item = document.createElement('div');
     var id = 'item' + guid++;
     item.classList.add("List-Item");
+    // item.classList.add("Selected");
     item.setAttribute('id', id);
     item.innerHTML = [
         '<button class="Toggle"></button>',
         '<div class="Msg">'+ msg +'</div>'
     ].join('');
 
+    var msg = item.querySelector('.Msg');
+
+    msg.addEventListener('touchend',function(){
+        var selected = item.classList.contains(CL_SELECTED);
+        if(!selected){
+            item.classList.add(CL_SELECTED);
+        }
+        else{
+            item.classList.remove(CL_SELECTED);
+        }
+        update();
+    })
+
     var toggle = item.querySelector('.Toggle');
 
     toggle.value = "false";
     toggle.addEventListener('click', function() {
-        var item = $('#' + id);
-        var msg = item.querySelector('.Msg');
-        if(this.value=="false"){
-            item.classList.add(CL_COMPLETED);
-            msg.classList.add(CL_COMPLETED);
-            this.value = "true";
-            this.classList.add("Toggle-Checked");
-        }
-        else{
-            item.classList.remove(CL_COMPLETED);
-            msg.classList.remove(CL_COMPLETED);
-            this.value = "false";
-            this.classList.remove("Toggle-Checked");
-        }
-        update();
+        toggleItem(id);
     }, false);
 
 
     todoList.insertBefore(item, todoList.firstChild);
     update();
 }
-  
+
+function removeTodo(id){
+    
+    var todoList = $('.Todo-List');
+    var item = $('#' + id);
+    todoList.removeChild(item);
+    update();
+}
+
+function toggleItem(id){
+    var item = $('#' + id);
+    var msg = item.querySelector('.Msg');
+    var toggle = item.querySelector('.Toggle');
+    if(toggle.value=="false"){
+        item.classList.add(CL_COMPLETED);
+        msg.classList.add(CL_COMPLETED);
+        toggle .value = "true";
+        toggle .classList.add("Toggle-Checked");
+    }
+    else{
+        item.classList.remove(CL_COMPLETED);
+        msg.classList.remove(CL_COMPLETED);
+        toggle .value = "false";
+        toggle .classList.remove("Toggle-Checked");
+    }
+    update();
+}
+
+function allSelected(isSelected){
+    var items = $All('.Todo-List .List-Item');
+    items.forEach((item)=>{
+        if(isSelected)
+            item.classList.add(CL_SELECTED);
+        else   
+            item.classList.remove(CL_SELECTED); 
+    });
+    update();
+}
+
+function toggleSelected(){
+    var items = $All('.Todo-List .List-Item');
+    items.forEach((item)=>{
+        if(item.classList.contains(CL_SELECTED)){
+            var id  = item.id ;
+            toggleItem(id);
+        }
+    });
+    update();
+}
+
+function removeSelected(id){
+    var items = $All('.Todo-List .List-Item');
+    items.forEach((item)=>{
+        if(item.classList.contains(CL_SELECTED)){
+            var id  = item.id ;
+            removeTodo(id);
+        }
+    });
+}
+
 
 window.onload = function init() {
     var newTodo = $('.Add-Todo');
@@ -96,6 +166,30 @@ window.onload = function init() {
             update();
         }, false);
     });
+
+    var selectAll = $('.Operation-Area .Select');
+    selectAll.addEventListener('click',function(){
+        var actived = selectAll.classList.contains('Actived');
+        if(!actived){
+            selectAll.classList.add('Actived');
+        }
+        else{
+            selectAll.classList.remove('Actived');
+        }
+        allSelected(!actived);
+    });
+
+    $('.Operation-Area .Toggle').addEventListener('click',()=>{
+        toggleSelected();
+    });
+
+    $('.Operation-Area .Remove').addEventListener('click',()=>{
+        removeSelected();
+    });
+
+    // for(var i =0;i<5;i++){
+    //     addTodo("TODO"+i);
+    // }
 
     update();
 };

@@ -8,7 +8,8 @@ body {
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     /* background: linear-gradient(-45deg,  #23a6d5, #5f52cf);  */
     background-size: 400% 400%;
-    animation: gradient 10s ease infinite;
+    /* animation: gradient 10s ease infinite; */
+    background-position: 0% 50%;
 }
 @keyframes gradient {
     0% {
@@ -69,26 +70,28 @@ body {
 }
 
 .Todo-List{
-    /* border: 1px solid black; */
     width: 98vw;
     flex-grow: 1;
     margin: auto;
     margin-top: 20px;
+    overflow: hidden;
 }
 
 .List-Item{
     font-size: 48px;
-    /* border: 1px solid black; */
     margin: 10px;
     background-color: #fff;
     color: #555;
     text-align: left;
-    padding: 20px 20px;
+    padding: 25px 20px;
     border-radius: 10px;
     box-shadow: 7px 7px 5px rgb(0 0 0 / 30%);
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+.List-Item.Selected{
+    border-left: #ee7752 15px solid;
 }
 
 .List-Item .Toggle {
@@ -116,6 +119,7 @@ body {
 
 .Footer{
     margin: 50px 15px;
+    margin-bottom: 20px;
 }
 .Footer .Input-Area{
     height: 6vh;
@@ -157,4 +161,40 @@ body {
 }
 .Add-Todo:-ms-input-placeholder {
     color: rgba(255,255,255,.5);
+}
+
+
+.Operation{
+    height: 8vh;
+    width: 100vw;
+}
+.Operation-Area{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.Operation-Area button{
+    margin-left: 20px;
+    border-radius: 10px;
+    font-size: 48px;
+    padding: 15px 40px;
+    background: none;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50px;
+}
+.Operation-Area button:hover{
+    background-color: #fff;
+    color: #777;
+}
+.Operation-Area button.Actived{
+    background-color: #fff;
+    color: #777;
+}
+.Operation-Area .Empty{
+    flex-grow: 1;
+}
+.Operation-Area .Remove{
+    margin-right: 20px;
 }

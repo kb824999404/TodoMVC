@@ -6,29 +6,38 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <div class="todoapp">
-            <header class="header">
-              <h1>todos</h1>
-              <!-- Add New Item -->
-              <input class="new-todo" type="text" placeholder="What needs to be done?" autofocus>
-            </header>
-        
-            <section class="main">
-              <input class="toggle-all" type="checkbox">
-              <!-- Show List -->
-              <ul class="todo-list"></ul>
-        
-              <footer class="footer">
-                <span class="todo-count"></span>
-                <ul class="filters">
-                  <li><a class="selected" style="cursor:pointer;">All</a></li>
-                  <li><a class="" style="cursor:pointer;">Active</a></li>
-                  <li><a class="" style="cursor:pointer;">Completed</a></li>
-                </ul>
-                <button class="clear-completed">Clear completed</button>
-              </footer>
-            </section>
-          </div>        
+      <div class="Page">
+        <header class="Header">
+          <h1>Todo</h1>
+        </header>
+        <section class="Main">
+          <div class="Filters">
+            <div class="Filter-Item Item-Selected">All</div>
+            <div class="Filter-Item">Selected</div>
+            <div class="Filter-Item">Completed</div>
+          </div>
+          <div class="Todo-List">
+            <div class="List-Item Item-Selected">
+              <button class="Toggle Toggle-Checked"></button>
+              <span>List Item 1</span>
+              <button class="Remove"></button>
+            </div>
+            <div class="List-Item">
+              <button class="Toggle"></button>
+              <span>List Item 1</span>
+            </div>
+            <div class="List-Item">
+              <button class="Toggle"></button>
+              <span>List Item 1</span>
+            </div>
+          </div>
+        </section>
+        <footer class="Footer">
+          <div class="Input-Area">
+            <img src="resources/plus.png" class="Input-Icon">
+            <input class="Add-Todo" type="text" placeholder="Add Todos" autofocus>
+          </div>
+        </footer>
+      </div>
     </body>
-    <script src="scripts.js"></script>
 </html>

@@ -13,7 +13,6 @@ var currentEditID = "";
 function update() {
     var items = $All('.Todo-List .List-Item');
     var filter = $('.Filter-Item.Selected').innerHTML;
-    var leftNum = 0;
     var display;
 
     items.forEach((item)=>{

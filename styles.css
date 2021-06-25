@@ -135,7 +135,7 @@ body {
     box-shadow: 7px 7px 5px rgb(0 0 0 / 20%);
 }
 .Footer .Input-Area img{
-    height: 80%;
+    height: 70%;
     margin-left: 20px;
     filter: invert(100%);
 }
@@ -173,12 +173,13 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-around;
 }
 .Operation-Area button{
-    margin-left: 20px;
+    margin: 0 10px;
     border-radius: 10px;
     font-size: 48px;
-    padding: 15px 40px;
+    padding: 10px 35px;
     background: none;
     color: #fff;
     border: 2px solid #fff;
@@ -191,10 +192,4 @@ body {
 .Operation-Area button.Actived{
     background-color: #fff;
     color: #777;
-}
-.Operation-Area .Empty{
-    flex-grow: 1;
-}
-.Operation-Area .Remove{
-    margin-right: 20px;
 }

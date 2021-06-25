@@ -28,7 +28,7 @@ function update() {
         }
         item.style.display = display;
     });
-    displayOperation();
+    saveData();
 
 }
 function displayOperation(){
@@ -128,6 +128,15 @@ function toggleSelected(){
     });
     update();
 }
+function clearCompleted(){
+    var items = $All('.Todo-List .List-Item');
+    items.forEach((item)=>{
+        if(item.classList.contains(CL_COMPLETED)){
+            var id  = item.id ;
+            removeTodo(id);
+        }
+    });
+}
 
 function removeSelected(id){
     var items = $All('.Todo-List .List-Item');
@@ -187,9 +196,42 @@ window.onload = function init() {
         removeSelected();
     });
 
-    // for(var i =0;i<5;i++){
-    //     addTodo("TODO"+i);
-    // }
+    $('.Operation-Area .Clear').addEventListener('click',()=>{
+        clearCompleted();
+    });
+
+    loadData();
 
     update();
 };
+
+function loadData(){
+   var data_str = window.localStorage.getItem("TodoMVC");
+   console.log(data_str);
+   if(data_str){
+       guid = 0;
+       data = JSON.parse(data_str);
+       data.forEach((todo)=>{
+            var msg = todo.msg;
+            var completed = todo.completed;
+            addTodo(msg);
+            if(completed)
+                toggleItem("item"+(guid-1));
+       })
+   }
+}
+
+
+function saveData(){
+    var items = $All('.Todo-List .List-Item');
+    var data = []
+    items.forEach((item)=>{
+        var msg = item.querySelector('.Msg').innerText;
+        var completed = item.classList.contains(CL_COMPLETED);
+        data.push({
+            msg:msg,
+            completed:completed
+        });
+    });
+    window.localStorage.setItem("TodoMVC",JSON.stringify(data));
+}

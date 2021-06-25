@@ -7,7 +7,8 @@ return document.querySelectorAll(sel);
 var guid = 0;
 var CL_COMPLETED = 'Completed';
 var CL_SELECTED = 'Selected';
-var CL_EDITING = 'Editing';
+
+var currentEditID = "";
   
 function update() {
     var items = $All('.Todo-List .List-Item');
@@ -54,6 +55,10 @@ function addTodo(msg) {
         '<button class="Toggle"></button>',
         '<div class="Msg">'+ msg +'</div>'
     ].join('');
+
+    item.addEventListener('dblclick',function(){
+        editTodo(id);
+    });
 
     var msg = item.querySelector('.Msg');
 
@@ -148,6 +153,21 @@ function removeSelected(id){
     });
 }
 
+function editTodo(id){
+    var dialog = $('.Dialog');
+    var item = $('#'+id);
+    var msg = item.querySelector(".Msg");
+    dialog.style.display = "";
+    var input = dialog.querySelector(".Modify-Todo input");
+    input.value = msg.innerText;
+
+    currentEditID = id;
+    dialog.querySelector('.Confirm').addEventListener('click',function(){
+        msg.innerText = input.value;
+        dialog.style.display = "none";
+    })
+}
+
 
 window.onload = function init() {
     var newTodo = $('.Add-Todo');
@@ -199,6 +219,12 @@ window.onload = function init() {
     $('.Operation-Area .Clear').addEventListener('click',()=>{
         clearCompleted();
     });
+
+    var dialog = $('.Dialog');
+    dialog.style.display = "none";
+    dialog.querySelector(".Cancel").addEventListener('click',function(){
+        dialog.style.display = "none";
+    })
 
     loadData();
 

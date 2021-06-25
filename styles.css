@@ -193,3 +193,84 @@ body {
     background-color: #fff;
     color: #777;
 }
+
+.Dialog{
+    z-index: 200;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;  /* 占满屏幕 */
+    top: 0;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(0,0,0,.5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Dialog-Box{
+    /* width: 70vw; */
+    /* height: 40vh; */
+    text-align: center;
+    /* background-color: #fff; */
+    /* overflow: hidden; */
+    /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8); */
+    border-radius: 10px;
+
+}
+.Dialog-Box h1{
+    font-size: 108px;
+    font-weight: 200;
+    color: rgba(255,255,255,.8);
+}
+
+.Modify-Todo{
+    border: none;
+    padding: 30px 0;
+    background-color: rgba(255,255,255,.2);
+    border-radius: 100px;
+    display: flex;
+    flex-direction: row;
+
+}
+.Modify-Todo input{
+    flex-grow: 0;
+    font-size: 54px;
+    width: 90%;
+    color:white;
+    outline: none;
+    border: none;
+    background:none;
+    margin: auto;
+}
+
+.Dialog-Box .Buttons{
+    margin: 100px 0;
+}
+.Dialog-Box .Buttons button{
+    width: 250px;
+    height: 100px;
+    margin: 50px;
+    border-radius: 50px;
+    background: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.5);
+    color: rgba(255,255,255,.5);
+    font-size: 48px;
+    transition: .2s;
+}
+
+.Dialog-Box .Buttons button:hover{
+    color: #000;
+    background-color: rgba(255,255,255,.5);
+}
+
+.Dialog-Box .Buttons .Confirm{
+    color: #000;
+    background-color: rgba(255,255,255,.5);
+}
+.Dialog-Box .Buttons .Confirm:hover{
+    color: rgba(255,255,255,.5);
+    background: none;
+}

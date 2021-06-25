@@ -141,7 +141,7 @@ function allSelected(isSelected){
 function toggleSelected(){
     var items = $All('.Todo-List .List-Item');
     items.forEach((item)=>{
-        if(item.classList.contains(CL_SELECTED)){
+        if(item.classList.contains(CL_SELECTED)&&!item.classList.contains(CL_COMPLETED)){
             var id  = item.id ;
             toggleItem(id);
         }
@@ -180,6 +180,7 @@ function editTodo(id){
     dialog.querySelector('.Confirm').addEventListener('click',function(){
         msg.innerText = input.value;
         dialog.style.display = "none";
+        update();
     })
 }
 

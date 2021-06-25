@@ -2,35 +2,26 @@ html , body{
     margin: 0;
     padding: 0;
     color: white;
+    transition: .5s;
 }
 
 body {
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-    /* background: linear-gradient(-45deg,  #23a6d5, #5f52cf);  */
     background-size: 400% 400%;
-    /* animation: gradient 10s ease infinite; */
     background-position: 0% 50%;
 }
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
+
 .Page{
     width: 100vw;
     height: 100vh;
     text-align: center;
     display: flex;
     flex-direction: column;
+    transition: .5s;
 }
 .Header{
     flex-grow: 0;
+    transition: .5s;
 }
 .Header h1{
     font-size: 100px;
@@ -45,6 +36,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    transition: .5s;
 }
 
 .Filters{
@@ -63,6 +55,7 @@ body {
     padding: 25px 0;
     flex-grow: 1;
     width: 30vw;
+    transition: .3s;
 }
 .Filter-Item.Selected{
     border-bottom: #23a6d5 solid 10px;
@@ -75,6 +68,7 @@ body {
     margin: auto;
     margin-top: 20px;
     overflow: hidden;
+    transition: .5s;
 }
 
 .List-Item{
@@ -89,6 +83,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    transition: .3s;
 }
 .List-Item.Selected{
     border-left: #ee7752 15px solid;
@@ -101,6 +96,7 @@ body {
     border: 3px solid #777;
     background:none;
     margin-right: 15px;
+    transition: .3s;
 }
 
 .List-Item .Toggle-Checked{
@@ -120,6 +116,7 @@ body {
 .Footer{
     margin: 50px 15px;
     margin-bottom: 20px;
+    transition: .3s;
 }
 .Footer .Input-Area{
     height: 6vh;
@@ -184,8 +181,9 @@ body {
     color: #fff;
     border: 2px solid #fff;
     border-radius: 50px;
+    transition: .4s;
 }
-.Operation-Area button:hover{
+.Operation-Area button:active {
     background-color: #fff;
     color: #777;
 }
@@ -207,6 +205,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: .5s;
 }
 
 .Dialog-Box{
@@ -253,10 +252,9 @@ body {
     border: 2px solid rgba(255,255,255,.5);
     color: rgba(255,255,255,.5);
     font-size: 48px;
-    transition: .2s;
+    transition: .3s;
 }
-
-.Dialog-Box .Buttons button:hover{
+.Dialog-Box .Buttons button:active {
     color: #000;
     background-color: rgba(255,255,255,.5);
 }
@@ -265,7 +263,7 @@ body {
     color: #000;
     background-color: rgba(255,255,255,.5);
 }
-.Dialog-Box .Buttons .Confirm:hover{
+.Dialog-Box .Buttons .Confirm:active {
     color: rgba(255,255,255,.5);
     background: none;
 }

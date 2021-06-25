@@ -56,8 +56,23 @@ function addTodo(msg) {
         '<div class="Msg">'+ msg +'</div>'
     ].join('');
 
-    item.addEventListener('dblclick',function(){
-        editTodo(id);
+    // item.addEventListener('dblclick',function(){
+    //     editTodo(id);
+    // });
+    // Long Tap
+    var longTapTimer;
+    item.addEventListener('touchstart', function () {
+        longTapTimer = setTimeout(function () {
+            editTodo(id);
+            longTapTimer = null;
+        }, 500);
+        console.log("TouchStart");
+    });
+    item.addEventListener('touchend', function () {
+        if(longTapTimer != null){
+            clearTimeout(longTapTimer);
+            longTapTimer = null;
+        }
     });
 
     var msg = item.querySelector('.Msg');
@@ -170,6 +185,14 @@ function editTodo(id){
 
 
 window.onload = function init() {
+
+    var dialog = $('.Dialog');
+    dialog.style.display = "none";
+    dialog.querySelector(".Cancel").addEventListener('click',function(){
+        dialog.style.display = "none";
+    })
+
+
     var newTodo = $('.Add-Todo');
     newTodo.addEventListener('keyup', function(ev) {
         // Enter
@@ -220,11 +243,7 @@ window.onload = function init() {
         clearCompleted();
     });
 
-    var dialog = $('.Dialog');
-    dialog.style.display = "none";
-    dialog.querySelector(".Cancel").addEventListener('click',function(){
-        dialog.style.display = "none";
-    })
+
 
     loadData();
 

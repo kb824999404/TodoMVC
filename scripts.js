@@ -14,7 +14,7 @@ function update() {
     var items = $All('.Todo-List .List-Item');
     var filter = $('.Filter-Item.Selected').innerHTML;
     var display;
-
+    var leftNum = 0;
     items.forEach((item)=>{
         if (!item.classList.contains(CL_COMPLETED)) leftNum++;
 
